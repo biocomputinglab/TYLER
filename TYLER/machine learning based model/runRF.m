@@ -1,0 +1,10 @@
+clc;
+clear;
+train_label=load('trainlabels.txt');
+train_data=load('rainfeatures.txt');
+test_label=load('testlabels.txt');
+test_data=load('testfeatures.txt');
+train_data=transpose(maxmin(transpose(train_data)));
+test_data=transpose(maxmin(transpose(test_data)));
+mdl= TreeBagger(200,train_data,train_label);
+[result,scores]=predict(mdl,test_data);

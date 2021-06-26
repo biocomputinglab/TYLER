@@ -1,0 +1,10 @@
+clc;
+clear;
+train_label=load('trainlabels.txt');
+TD=load('trainfeatures.txt');
+test_label=load('testlabels.txt');
+test_data=load('testfeatures.txt');
+TD=transpose(maxmin(transpose(TD)));
+test_data=transpose(maxmin(transpose(test_data)));
+out =glmfit(TD,train_label,'binomial','link', 'logit');
+Pred = Logistic(out(1,1)+test_data*(out(2:end)));
